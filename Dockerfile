@@ -38,7 +38,7 @@ RUN pip install --no-cache-dir \
 
 # Instalar Chromium do Playwright (uma vez só)
 RUN playwright install chromium && \
-    playwright install-deps chromium
+    playwright install-deps
 
 # Copiar o código Python
 COPY worker.py .
@@ -50,4 +50,5 @@ EXPOSE 8651
 ENV PYTHONUNBUFFERED=1
 
 # Comando para iniciar a aplicação
+
 CMD ["uvicorn", "worker:app", "--host", "0.0.0.0", "--port", "8651"]
