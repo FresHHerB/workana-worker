@@ -1,9 +1,8 @@
 services:
   workana-scraper:
-    # Usar uma imagem já buildada (Docker Hub, GitHub Registry, etc.)
-    image: your-registry/workana-scraper:latest
-    # Ou se você fez push para Docker Hub:
-    # image: seuusuario/workana-scraper:latest
+    # Para build automático no EasyPanel via GitHub
+    build: .
+    # O EasyPanel detectará automaticamente o Dockerfile na raiz
     
     ports:
       - "8651:8651"
@@ -12,10 +11,6 @@ services:
       WORKANA_EMAIL: "faelzim34@gmail.com" 
       WORKANA_PASSWORD: "202526.Wk"
     restart: unless-stopped
-    
-    # Sobrescrever o código se necessário (desenvolvimento)
-    volumes:
-      - ./worker.py:/app/worker.py:ro  # Read-only para segurança
     
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8651/health"]
