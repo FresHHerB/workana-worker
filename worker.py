@@ -19,8 +19,8 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-EMAIL = os.getenv("WORKANA_EMAIL", "faelzim34@gmail.com")
-PASSWORD = os.getenv("WORKANA_PASSWORD", "202526.Wk")
+EMAIL = os.getenv("WORKANA_EMAIL")
+PASSWORD = os.getenv("WORKANA_PASSWORD")
 
 async def scrape_and_return():
     async with async_playwright() as p:
@@ -113,4 +113,5 @@ async def scrape_endpoint():
     if result["status"] == "success":
         return result
     else:
+
         raise HTTPException(status_code=500, detail=result.get("message"))
